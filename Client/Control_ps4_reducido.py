@@ -594,7 +594,7 @@ class MandoWidget(QWidget):
                     )
                 
             self.right_label_master.setText(
-                f"Joystick Derecho\n{"-"*17}\nX: {self.right_label_x.text()}\nY: {self.right_label_y.text()}"
+                f"Joystick Derecho\n{'-'*17}\nX: {self.right_label_x.text()}\nY: {self.right_label_y.text()}"
                 )
 
         elif axis in [4, 5]:
@@ -611,7 +611,7 @@ class MandoWidget(QWidget):
                     )
                 
             self.trigger_label_master.setText(
-                f"Gatillos\n{"-"*13}\nL2: {self.trigger_label_x.text()}\nR2: {self.trigger_label_y.text()}"
+                f"Gatillos\n{'-'*13}\nL2: {self.trigger_label_x.text()}\nR2: {self.trigger_label_y.text()}"
                 )
 
 class PythonHighlighter(QSyntaxHighlighter):

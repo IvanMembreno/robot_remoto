@@ -361,15 +361,15 @@ def ejecutar_accion(comando):
     elif comando == "btn_6":
         accion_options()
     elif comando == "btn_7":
-        accion_l3()
+        _lanzar_en_hilo(accion_l3)
     elif comando == "btn_8":
-        accion_r3()
+        _lanzar_en_hilo(accion_r3)
     elif comando == "btn_9":
-        accion_l1()
+        _lanzar_en_hilo(accion_l1)
     elif comando == "btn_10":
-        accion_r1()
+        _lanzar_en_hilo(accion_r1)
     elif comando == "btn_15":
-        accion_touchpad()
+        _lanzar_en_hilo(accion_touchpad)
 
 # Ejecutar el txt
 def iniciar_servidor():
