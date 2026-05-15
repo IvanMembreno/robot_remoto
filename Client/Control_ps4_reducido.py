@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import sys
 import socket
 import pygame
@@ -144,9 +142,8 @@ class JoystickThread(QThread):
                         if event.type == pygame.JOYBUTTONDOWN:
                             self.button_signal.emit(event.button, True)
                             cmd = f"btn_{event.button}"
-                            if cmd != self.ultimo_move:
-                                self.enviar_robot(cmd)
-                                self.ultimo_move = cmd
+                            self.enviar_robot(cmd)
+                            self.ultimo_move = ""
 
                             self.log_signal.emit(
                                 f"btn_{event.button}\t|   {BOTONES.get(event.button)}"
@@ -580,7 +577,7 @@ class MandoWidget(QWidget):
                     )
                 
             self.left_label_master.setText(
-                f"Joystick Izqierdo\n{"-"*17}\nX: {self.left_label_x.text()}\nY: {self.left_label_y.text()}"
+                f"Joystick Izquierdo\n{'-'*17}\nX: {self.left_label_x.text()}\nY: {self.left_label_y.text()}"
                 )
 
         elif axis in [2, 3]:
@@ -614,7 +611,7 @@ class MandoWidget(QWidget):
                     )
                 
             self.trigger_label_master.setText(
-                f"Gatillos\n{"-"*17}\nL2: {self.trigger_label_x.text()}\nR2: {self.trigger_label_y.text()}"
+                f"Gatillos\n{"-"*13}\nL2: {self.trigger_label_x.text()}\nR2: {self.trigger_label_y.text()}"
                 )
 
 class PythonHighlighter(QSyntaxHighlighter):
