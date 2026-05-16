@@ -303,6 +303,7 @@ def _detener_accion_en_curso():
 
 def _lanzar_en_hilo(func):
     global accion_en_curso, hilo_accion
+    _stop_event.clear()
     accion_en_curso = True
     hilo_accion = threading.Thread(target=func)
     hilo_accion.daemon = True
@@ -315,9 +316,14 @@ def ejecutar_accion(comando):
     print("Comando recibido: {}".format(comando))
 
     if comando.startswith("move:"):
-        if accion_en_curso:
-            _detener_accion_en_curso()
-            parar()
+        valores = comando.replace("move:", "")
+        izq, der = valores.split(",")
+        if int(izq) != 0 or int(der) != 0:
+            if accion_en_curso:
+                _detener_accion_en_curso()
+                parar()
+        elif accion_en_curso:
+            return
         control_joystick(comando)
         return
 
@@ -326,6 +332,8 @@ def ejecutar_accion(comando):
         _detener_accion_en_curso()
         parar()
         time.sleep(0.05)
+
+    _stop_event.clear()
 
     # Botones de acción
     if comando == "btn_0":
