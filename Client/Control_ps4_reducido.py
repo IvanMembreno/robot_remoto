@@ -57,7 +57,6 @@ class JoystickThread(QThread):
         self.sock = None
 
     def conectar_robot(self, ip):
-
         self.robot_ip = ip
 
         try:
@@ -81,7 +80,6 @@ class JoystickThread(QThread):
             )
     
     def enviar_robot(self, comando):
-
         if not self.sock:
             return
 
@@ -89,7 +87,6 @@ class JoystickThread(QThread):
             self.sock.send(
                 (comando + "\n").encode()
             )
-
         except Exception as e:
             self.log_signal.emit(
                 f"Conexion perdida: {e}"

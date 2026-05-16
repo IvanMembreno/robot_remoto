@@ -2,14 +2,14 @@
 
 import socket
 import time
-import threading
+import threading #hilos de trabajo
 
 try:
     import ft
     txt = ft.fttxt2("auto")
     motor_izq = txt.motor(1)
     motor_der = txt.motor(2)
-    VELOCIDAD = 400
+    VELOCIDAD = 400 # potencia del motor entre (0-510)
     API_OK = True
     print("Motores configurados")
 except Exception as e:
