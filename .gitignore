@@ -1,2 +1,5 @@
 .venv
 web
+
+build
+dist
