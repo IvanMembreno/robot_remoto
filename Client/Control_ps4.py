@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import sys
 import socket
 import pygame
@@ -59,7 +57,6 @@ class JoystickThread(QThread):
         self.sock = None
 
     def conectar_robot(self, ip):
-
         self.robot_ip = ip
 
         try:
@@ -83,7 +80,6 @@ class JoystickThread(QThread):
             )
     
     def enviar_robot(self, comando):
-
         if not self.sock:
             return
 
@@ -91,7 +87,6 @@ class JoystickThread(QThread):
             self.sock.send(
                 (comando + "\n").encode()
             )
-
         except Exception as e:
             self.log_signal.emit(
                 f"Conexion perdida: {e}"
@@ -144,9 +139,8 @@ class JoystickThread(QThread):
                         if event.type == pygame.JOYBUTTONDOWN:
                             self.button_signal.emit(event.button, True)
                             cmd = f"btn_{event.button}"
-                            if cmd != self.ultimo_move:
-                                self.enviar_robot(cmd)
-                                self.ultimo_move = cmd
+                            self.enviar_robot(cmd)
+                            self.ultimo_move = ""
 
                             self.log_signal.emit(
                                 f"btn_{event.button}\t|   {BOTONES.get(event.button)}"
@@ -580,7 +574,7 @@ class MandoWidget(QWidget):
                     )
                 
             self.left_label_master.setText(
-                f"Joystick Izqierdo\n{"-"*17}\nX: {self.left_label_x.text()}\nY: {self.left_label_y.text()}"
+                f"Joystick Izquierdo\n{'-'*17}\nX: {self.left_label_x.text()}\nY: {self.left_label_y.text()}"
                 )
 
         elif axis in [2, 3]:
@@ -597,7 +591,7 @@ class MandoWidget(QWidget):
                     )
                 
             self.right_label_master.setText(
-                f"Joystick Derecho\n{"-"*17}\nX: {self.right_label_x.text()}\nY: {self.right_label_y.text()}"
+                f"Joystick Derecho\n{'-'*17}\nX: {self.right_label_x.text()}\nY: {self.right_label_y.text()}"
                 )
 
         elif axis in [4, 5]:
@@ -614,7 +608,7 @@ class MandoWidget(QWidget):
                     )
                 
             self.trigger_label_master.setText(
-                f"Gatillos\n{"-"*17}\nL2: {self.trigger_label_x.text()}\nR2: {self.trigger_label_y.text()}"
+                f"Gatillos\n{'-'*13}\nL2: {self.trigger_label_x.text()}\nR2: {self.trigger_label_y.text()}"
                 )
 
 class PythonHighlighter(QSyntaxHighlighter):
